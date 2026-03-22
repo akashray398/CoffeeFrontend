@@ -166,13 +166,24 @@ section {
     background: url(home-bg.jpg) no-repeat;
     background-position: center;
     background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+}
+
+.home::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
 }
 
 .home .row {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1.5rem;
+    position: relative;
+    z-index: 2;
 }
 
 .home .row .content {
@@ -181,12 +192,13 @@ section {
 
 .home .row .image {
     flex: 1 1 42rem;
-    padding-top: 10rem;
     text-align: center;
 }
 
 .home .row .image img {
-    height: 35rem;
+    height: 25rem;
+    width: auto;
+    max-width: 100%;
     animation: float 4s linear infinite;
 }
 
@@ -304,13 +316,42 @@ section {
     background: url(menu-bg.jpg) no-repeat;
     background-position: center;
     background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+    padding: 5rem 0;
+}
+
+.menu::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+    animation: backgroundFade 8s ease-in-out infinite alternate;
+}
+
+@keyframes backgroundFade {
+    0% { opacity: 0.3; }
+    100% { opacity: 0.5; }
+}
+
+.menu .heading {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.menu .heading span {
+    color: #fff;
 }
 
 .menu .box-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    justify-content: center;
+    position: relative;
+    z-index: 2;
 }
 
 .menu .box-container .box {
@@ -322,6 +363,7 @@ section {
     align-items: center;
     gap: 1.5rem;
     margin: 0;
+    background: rgba(255, 255, 255, 0.95);
 }
 
 .menu .box-container .box:hover {
@@ -332,25 +374,30 @@ section {
 .menu .box-container .box img {
     height: 8rem;
     margin-left: 0;
+    filter: brightness(0.8) contrast(1.1);
 }
 
 .menu .box-container .box .content h3 {
-    font-size: 2.2rem;
+    font-size: 2.4rem;
     color: var(--main-color);
-    line-height: 1.8;
+    line-height: 1.4;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
 }
 
 .menu .box-container .box .content p {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     color: var(--main-color);
-    line-height: 1.8;
-    padding: 1rem 0;
+    line-height: 1.6;
+    padding: 0.5rem 0 1rem 0;
+    opacity: 0.9;
 }
 
 .menu .box-container .box .content span {
-    font-size: 2rem;
+    font-size: 2.2rem;
     color: var(--main-color);
     line-height: 1.8;
+    font-weight: 700;
 }
 
 /* REVIEW */
@@ -450,35 +497,94 @@ section {
     background: url(book-bg.jpg);
     background-position: center;
     background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+    padding: 5rem 0;
+}
+
+.book::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    animation: backgroundPulse 10s ease-in-out infinite alternate;
+}
+
+@keyframes backgroundPulse {
+    0% { opacity: 0.4; }
+    100% { opacity: 0.6; }
+}
+
+.book .heading {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.book .heading span {
+    color: #fff;
 }
 
 .book form {
+    position: relative;
+    z-index: 2;
     margin: 0 auto 2rem auto;
-    max-width: 60rem;
-    border-radius: var(--border-radius-hover);
+    max-width: 50rem;
+    border-radius: var(--border-radius);
     padding: 3rem;
+    background: rgba(255, 255, 255, 0.95);
     border: var(--border);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
 }
 
 .book form .box {
     width: 100%;
-    padding: 1rem 1.2rem;
+    padding: 1.2rem 1.5rem;
     border-radius: .5rem;
     font-size: 1.6rem;
-    background: none;
+    background: rgba(255, 255, 255, 0.9);
     text-transform: none;
     color: var(--main-color);
     border: var(--border);
-    margin: .7rem 0;
+    margin: .8rem 0;
+    transition: all 0.3s ease;
 }
 
 .book form .box:focus {
     border: var(--border-hover);
+    box-shadow: 0 0 1rem rgba(68, 51, 51, 0.2);
+    background: #fff;
 }
 
 .book form textarea {
-    height: 15rem;
-    resize: none;
+    height: 8rem;
+    resize: vertical;
+    min-height: 6rem;
+    max-height: 12rem;
+}
+
+.book form .btn {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 1.2rem;
+    font-size: 1.8rem;
+    background: var(--main-color);
+    color: #fff;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.book form .btn:hover {
+    background: #fff;
+    color: var(--main-color);
+    border: var(--border);
 }
 
 .footer .box-container {
@@ -516,8 +622,41 @@ section {
     color: var(--main-color);
 }
 
-.footer .credit span {
-    border-bottom: var(--border-hover);
+[data-theme="dark"] .menu .box-container .box {
+    background: rgba(44, 24, 16, 0.95);
+    border-color: #f9f5f0;
+}
+
+[data-theme="dark"] .menu .box-container .box .content h3,
+[data-theme="dark"] .menu .box-container .box .content p,
+[data-theme="dark"] .menu .box-container .box .content span {
+    color: #f9f5f0;
+}
+
+[data-theme="dark"] .book form {
+    background: rgba(44, 24, 16, 0.95);
+    border-color: #f9f5f0;
+}
+
+[data-theme="dark"] .book form .box {
+    background: rgba(44, 24, 16, 0.9);
+    color: #f9f5f0;
+    border-color: #f9f5f0;
+}
+
+[data-theme="dark"] .book form .box:focus {
+    background: rgba(44, 24, 16, 1);
+    border-color: #f9f5f0;
+}
+
+[data-theme="dark"] .book form .btn {
+    background: #f9f5f0;
+    color: var(--main-color);
+}
+
+[data-theme="dark"] .book form .btn:hover {
+    background: var(--main-color);
+    color: #f9f5f0;
 }
 
 /* Scroll to Top */
@@ -597,6 +736,12 @@ section {
 
     #menu-btn {
         display: initial;
+    }
+
+    .home,
+    .menu,
+    .book {
+        background-attachment: scroll;
     }
 
     #menu-btn.fa-times {
